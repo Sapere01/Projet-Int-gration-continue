@@ -19,8 +19,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     # path('', include('GestionTacheApp.urls')),
-=======
->>>>>>> f2f1fd3db2338b33ef65c601824ecc20184b9f26
 ]
