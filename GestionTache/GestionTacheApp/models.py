@@ -9,13 +9,6 @@ class Utilisateur(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    def create_logged_user(self, username, type_compte):
-        """Creates a logged_user object with limited information."""
-        return {
-            'id': self.id,
-            'username': username,
-            'type_compte': type_compte,
-        }
 
 class SessionUtilisateur(models.Model):
     user = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
