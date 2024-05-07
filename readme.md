@@ -26,7 +26,10 @@ Cette application de gestion de tâches collaboratives a été développée dans
 ## Installation
 
 1. Clonez ce dépôt sur votre machine locale.
-2. Assurez-vous d'avoir Python et Django installés sur votre machine.
+```
+git clone https://github.com/Sapere01/Projet-Int-gration-continue.git
+```
+2. Assurez-vous d'avoir Python installlé sur votre machine.
 3. Naviguez vers le répertoire du projet dans votre terminal.
 4. Installez les dépendances en exécutant la commande :
 ```
@@ -38,5 +41,10 @@ python manage.py migrate
 ```
 6. Tester l'application avec la commande :
 ```
+cd GestionTache
 python manage.py todo
+```
+7. Lancer les tests unitaires de l'application avec la commande (en étant dans le  repertoire GestionTache):
+```
+python manage.py test
 ```
