@@ -1,4 +1,6 @@
 from django.test import TestCase
+from unittest.mock import patch
+from io import StringIO
 from GestionTacheApp.management.commands import todo
 from .models import Tache, Utilisateur, SessionUtilisateur
 
@@ -27,14 +29,17 @@ class CommandTestCase(TestCase):
     def test_create_task(self, title='Test Task', description='Test Description'):
         return Tache.objects.create(titre=title, description=description, utilisateur=self.user)
 
-    def test_login_success_and_logout(self):
-        todo.Command.login(self)
-        self.assertTrue(SessionUtilisateur.objects.exists())
-        self.assertEqual(SessionUtilisateur.objects.first().user, self.user)
+    @patch('builtins.input', side_effect=['testuser', '12345'])
+    def test_login_success_and_logout(self, mock_input):
+        with patch('sys.stdout', new=StringIO()) as fake_output:
+            todo.Command.login(self)
+            self.assertTrue(SessionUtilisateur.objects.exists())
+            self.assertEqual(SessionUtilisateur.objects.first().user, self.user)
 
         # Test logout here
-        todo.Command.logout(self)
-        self.assertFalse(SessionUtilisateur.objects.exists())
+        with patch('sys.stdout', new=StringIO()) as fake_output:
+            todo.Command.logout(self)
+            self.assertFalse(SessionUtilisateur.objects.exists())
 
     # def test_login_invalid_credentials(self):
     #     with self.assertRaises(SystemExit) as cm:
