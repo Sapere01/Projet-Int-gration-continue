@@ -35,16 +35,20 @@ git clone https://github.com/Sapere01/Projet-Int-gration-continue.git
 ```
 pip install -r requirements.txt
 ```
-5. Appliquez les migrations avec la commande :
-```
-python manage.py migrate
-```
-6. Tester l'application avec la commande :
+5. Se déplacer dans le  repertoire **GestionTache** de notre application pour effectuer les actions suivantes
 ```
 cd GestionTache
+```
+6. Appliquez les migrations avec la commande :
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+7. Tester l'application avec la commande :
+```
 python manage.py todo
 ```
-7. Lancer les tests unitaires de l'application avec la commande (en étant dans le  repertoire GestionTache):
+8. Lancer les tests unitaires de l'application avec la commande :
 ```
 python manage.py test
 ```
