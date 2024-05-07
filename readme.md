@@ -2,7 +2,10 @@
 
 Cette application de gestion de tâches collaboratives a été développée dans le cadre du projet du cours de Tests Logiciels & Intégration Continue à l'Ecole Polytechnique de Ouagadougou (EPO). L'objectif principal était de mettre en pratique les connaissances acquises en tests logiciels et intégration continue, en utilisant le framework web Django.
 
-## @Auteurs
+## Enseignant
+- KABORE Abdoul Kader
+
+## Auteurs
 - YAMEOGO Baowendsomme Armel
 - SANGO Appolinaire
 
