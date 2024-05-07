@@ -73,9 +73,9 @@ class Command(BaseCommand):
 
             SessionUtilisateur.objects.all().delete()
 
-            self.stdout.write(f"{utilisateur.username} Successfully logout.")
+            self.print_success(utilisateur.username+" successfully logout.")
         except Exception:
-            self.stdout.write("See you next time.")
+            self.print_success("See you next time.")
 
     def print__all__users(self):
         users = Utilisateur.objects.all()
