@@ -21,7 +21,7 @@ Cette application de gestion de tâches collaboratives a été développée dans
 
 - Framework Web: Django
 - Base de Données: SQLite (par défaut avec Django)
-- Outils d'Intégration Continue: GitLab CI/CD
+- Outils d'Intégration Continue: GitHub Actions
 
 ## Installation
 
