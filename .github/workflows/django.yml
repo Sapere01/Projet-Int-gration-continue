@@ -27,5 +27,4 @@ jobs:
         # pip install -r requirements.txt
     - name: Run Tests
       run: |
-        cd GestionTache
-        python manage.py test
+        cd GestionTache && python manage.py test
