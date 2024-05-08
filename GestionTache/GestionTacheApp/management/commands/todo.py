@@ -39,9 +39,10 @@ class Command(BaseCommand):
         print("5. Marquer une tâche comme terminée")
         print("6. Modifier une tâche")
         print("7. Supprimer une tâche")
-        print("8. Quitter")
+        print("8. Statistiques")
+        print("9. Quitter")
 
-        choice = input("Entrez votre choix (1-8): ")
+        choice = input("Entrez votre choix (1-9): ")
         self.beautify()
 
         return choice
@@ -81,7 +82,7 @@ class Command(BaseCommand):
         users = Utilisateur.objects.all()
 
         for user in users:
-            print(user.username+""+user.typeCompte)
+            print(user.username+" "+user.typeCompte)
 
     def create__user(self):
         username = input("Entrez votre nom d'utilisateur: ")
@@ -206,6 +207,40 @@ class Command(BaseCommand):
             self.print_error("Aucune session active. Veuillez vous connecter d'abord...")
             self.beautify()
 
+    def print__stats(self):
+
+        try:
+            utilisateur = SessionUtilisateur.objects.all().first().user
+
+            try:
+                mes_tachs = Tache.objects.filter(
+                    Q(utilisateur__username__icontains=utilisateur.username))
+                
+                nb_total = 0
+                nb_finish = 0
+
+                for tache in mes_tachs:
+                    nb_total = nb_total + 1
+                    if tache.etat == True:
+                        nb_finish = nb_finish + 1
+
+                self.stdout.write(f"STATISTIQUES\nNombre total de tâches : {nb_total}")
+
+                self.stdout.write(f"Nombre total de tâches terminées : {nb_finish}")
+                percent = nb_finish*100/nb_total
+                self.stdout.write(f"Pourcentage de tâches terminées : {percent} %")
+
+                self.beautify()
+            except Exception:
+                self.print_error("Vous n'avez aucune tâche prévue...")
+                self.beautify()
+            
+        except Exception:
+            self.print_error("Aucune session active. Veuillez vous connecter d'abord...")
+            self.beautify()
+
+        
+
     def handle(self, *args, **options):
 
         is_not_finish = True
@@ -245,9 +280,11 @@ class Command(BaseCommand):
                 case '7':
                     self.del__task()
                 case '8':
+                    self.print__stats()
+                case '9':
                     self.logout()
                     is_not_finish = False
-                case '9': # Supprimer toutes les tâches
+                case '10': # Supprimer toutes les tâches
                     tasks = Tache.objects.all()
                     for task in tasks:
                         task.delete()
@@ -256,5 +293,3 @@ class Command(BaseCommand):
 
 
         
-        
-
